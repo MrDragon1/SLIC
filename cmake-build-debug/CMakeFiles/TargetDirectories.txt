@@ -1,3 +1,3 @@
-/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/CMakeFiles/DIPlab3.dir
+/home/mrdragon/Code/C/SLIC/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mrdragon/Code/C/SLIC/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mrdragon/Code/C/SLIC/cmake-build-debug/CMakeFiles/DIPlab3.dir

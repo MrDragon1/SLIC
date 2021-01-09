@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\opencv4\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/mrdragon/Code/C/DIPlab3/cmake-build-debug"/>
+				<Option working_dir="/home/mrdragon/Code/C/SLIC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/mrdragon/Code/C/DIPlab3/cmake-build-debug"/>
+				<Option working_dir="/home/mrdragon/Code/C/SLIC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/mrdragon/Code/C/DIPlab3/cmake-build-debug"/>
+				<Option working_dir="/home/mrdragon/Code/C/SLIC/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="DIPlab3">
-				<Option output="/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/DIPlab3" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/mrdragon/Code/C/DIPlab3/cmake-build-debug"/>
+				<Option output="/home/mrdragon/Code/C/SLIC/cmake-build-debug/DIPlab3" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mrdragon/Code/C/SLIC/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -56,15 +56,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 DIPlab3"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 DIPlab3"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="DIPlab3/fast">
-				<Option output="/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/DIPlab3" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/mrdragon/Code/C/DIPlab3/cmake-build-debug"/>
+				<Option output="/home/mrdragon/Code/C/SLIC/cmake-build-debug/DIPlab3" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mrdragon/Code/C/SLIC/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -81,29 +81,29 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 DIPlab3/fast"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/DIPlab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 DIPlab3/fast"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/mrdragon/Code/C/SLIC/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/mrdragon/Code/C/DIPlab3/main.cpp">
+		<Unit filename="/home/mrdragon/Code/C/SLIC/main.cpp">
 			<Option target="DIPlab3"/>
 		</Unit>
-		<Unit filename="/home/mrdragon/Code/C/DIPlab3/CMakeLists.txt">
+		<Unit filename="/home/mrdragon/Code/C/SLIC/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/mrdragon/Code/C/DIPlab3/../../../../../usr/local/lib/cmake/opencv4/OpenCVConfig-version.cmake">
+		<Unit filename="/home/mrdragon/Code/C/SLIC/../../../../../usr/local/lib/cmake/opencv4/OpenCVConfig-version.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
 		</Unit>
-		<Unit filename="/home/mrdragon/Code/C/DIPlab3/../../../../../usr/local/lib/cmake/opencv4/OpenCVConfig.cmake">
+		<Unit filename="/home/mrdragon/Code/C/SLIC/../../../../../usr/local/lib/cmake/opencv4/OpenCVConfig.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
 		</Unit>
-		<Unit filename="/home/mrdragon/Code/C/DIPlab3/../../../../../usr/local/lib/cmake/opencv4/OpenCVModules-release.cmake">
+		<Unit filename="/home/mrdragon/Code/C/SLIC/../../../../../usr/local/lib/cmake/opencv4/OpenCVModules-release.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
 		</Unit>
-		<Unit filename="/home/mrdragon/Code/C/DIPlab3/../../../../../usr/local/lib/cmake/opencv4/OpenCVModules.cmake">
+		<Unit filename="/home/mrdragon/Code/C/SLIC/../../../../../usr/local/lib/cmake/opencv4/OpenCVModules.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
 		</Unit>
 	</Project>

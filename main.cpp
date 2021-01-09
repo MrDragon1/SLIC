@@ -12,14 +12,18 @@ struct center{
 };
 center getmincenter(int x,int y);
 double getdistance(center a,center b,double S);
+void post_processing(Mat* image);
+void display_contours(Mat *image);
+
 
 const double Emax = 0.01;
-const int k = 500;//cluster num
+const int k = 100;//cluster num
 vector<center> centers;
 vector<vector<int>> label;
 vector<vector<double>> dis;
+vector<vector<int>> new_clusters;
 Mat labimg, img;
-
+int width, height;
 
 int main() {
     img = imread("./lena.png");
@@ -27,8 +31,8 @@ int main() {
     namedWindow("origin img", WINDOW_NORMAL);
     imshow("origin img", img);
 
-    const int width = img.cols;
-    const int height = img.rows;
+    width = img.cols;
+    height = img.rows;
     const int N = width*height;
     const double S = sqrt(N/k);
     double E = 10;
@@ -139,7 +143,10 @@ int main() {
             }
         }
     }
+
+    post_processing(&labimg);
     cvtColor(labimg,img,COLOR_Lab2BGR);
+    display_contours(&img);
     namedWindow("img", WINDOW_NORMAL);
     imshow("img", img);
 
@@ -177,4 +184,118 @@ double getdistance(center a,center b,double S)
     double dc = sqrt(pow(a.l-b.l,2)+pow(a.a-b.a,2)+pow(a.b-b.b,2));
     double ds = sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2));
     return sqrt(dc*dc + pow(ds/S,2) * 100);
+}
+
+void post_processing(Mat* image)
+{
+    int label_count = 0, adjlabel = 0;
+    const int lims = (width * height) / ((int)centers.size());
+
+    const int dx4[4] = {-1,  0,  1,  0};
+    const int dy4[4] = { 0, -1,  0,  1};
+
+    /* Initialize the new cluster matrix. */
+
+    for (int i = 0; i < height; i++) {
+        vector<int> nc;
+        for (int j = 0; j < width; j++) {
+            nc.push_back(-1);
+        }
+        new_clusters.push_back(nc);
+    }
+
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            if (new_clusters[i][j] == -1) {
+                vector<Point> elements;
+                elements.push_back(Point(j, i));
+
+                /* Find an adjacent label, for possible use later. */
+                for (int k = 0; k < 4; k++) {
+                    int x = elements[0].x + dx4[k], y = elements[0].y + dy4[k];
+
+                    if (x >= 0 && x < width && y >= 0 && y < height) {
+                        if (new_clusters[y][x] >= 0) {
+                            adjlabel = new_clusters[y][x];
+                        }
+                    }
+                }
+
+                int count = 1;
+                for (int c = 0; c < count; c++) {
+                    for (int k = 0; k < 4; k++) {
+                        int x = elements[c].x + dx4[k], y = elements[c].y + dy4[k];
+
+                        if (x >= 0 && x < width && y >= 0 && y < height) {
+                            if (new_clusters[y][x] == -1 && label[i][j] == label[y][x]) {
+                                elements.push_back(Point(x, y));
+                                new_clusters[y][x] = label_count;
+                                count += 1;
+                            }
+                        }
+                    }
+                }
+
+                /* Use the earlier found adjacent label if a segment size is
+                   smaller than a limit. */
+                if (count <= lims >> 2) {
+                    for (int c = 0; c < count; c++) {
+                        new_clusters[elements[c].y][elements[c].x] = adjlabel;
+                    }
+                    label_count -= 1;
+                }
+                label_count += 1;
+            }
+        }
+    }
+
+
+}
+
+void display_contours(Mat *image) {
+    const int dx8[8] = {-1, -1,  0,  1, 1, 1, 0, -1};
+    const int dy8[8] = { 0, -1, -1, -1, 0, 1, 1,  1};
+
+    /* Initialize the contour vector and the matrix detailing whether a pixel
+     * is already taken to be a contour. */
+    vector<Point> contours;
+    vector<vector<bool>> istaken;
+    for (int i = 0; i < height; i++) {
+        vector<bool> nb;
+        for (int j = 0; j < width; j++) {
+            nb.push_back(false);
+        }
+        istaken.push_back(nb);
+    }
+
+    /* Go through all the pixels. */
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            int nr_p = 0;
+
+            /* Compare the pixel to its 8 neighbours. */
+            for (int k = 0; k < 8; k++) {
+                int x = j + dx8[k], y = i + dy8[k];
+
+                if (x >= 0 && x < width && y >= 0 && y < height) {
+                    if (istaken[y][x] == false && new_clusters[i][j] != new_clusters[y][x]) {
+                        nr_p += 1;
+                    }
+                }
+            }
+
+            /* Add the pixel to the contour list if desired. */
+            if (nr_p >= 2) {
+                contours.push_back(Point(j,i));
+                istaken[i][j] = true;
+            }
+        }
+    }
+
+    /* Draw the contour pixels. */
+    for (int i = 0; i < (int)contours.size(); i++) {
+        image->at<Vec3b>(contours[i].y,contours[i].x)[0] = 255;
+        image->at<Vec3b>(contours[i].y,contours[i].x)[1] = 0;
+        image->at<Vec3b>(contours[i].y,contours[i].x)[2] = 0;
+    }
 }
