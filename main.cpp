@@ -13,8 +13,6 @@ struct center{
 center getmincenter(int x,int y);
 double getdistance(center a,center b,double S);
 void post_processing(Mat* image);
-void display_contours(Mat *image);
-
 
 const double Emax = 0.01;
 const int k = 100;//cluster num
@@ -118,38 +116,41 @@ int main() {
         cout<< "iter:"<<iter++<<" err:" << E<<endl;
     }
     cout<<"the number of cluster center : "<< centers.size()<<endl;
+
     /* update img */
     for(int i = 0;i<width;i++){
         for(int j = 0;j<height;j++){
             int class_label = label[j][i];
             if(class_label!=-1){
-                bool flag = true;
-                for(int ii = i-1;ii<=i+1&&flag;ii++){
-                    for(int jj = j-1;jj<=j+1&&flag;jj++){
-                        if(ii<0||ii>=width||jj<0||jj>=height) continue;
-                        if(label[jj][ii]!=class_label) flag = false;
-                    }
-                }
-                if(1){
-                    labimg.at<Vec3b>(j, i)[0] = centers[class_label].l;
-                    labimg.at<Vec3b>(j, i)[1] = centers[class_label].a;
-                    labimg.at<Vec3b>(j, i)[2] = centers[class_label].b;
-                }
-                else{
-                    labimg.at<Vec3b>(j, i)[0] = 0;
-                    labimg.at<Vec3b>(j, i)[1] = 0;
-                    labimg.at<Vec3b>(j, i)[2] = 0;
-                }
+                labimg.at<Vec3b>(j, i)[0] = centers[class_label].l;
+                labimg.at<Vec3b>(j, i)[1] = centers[class_label].a;
+                labimg.at<Vec3b>(j, i)[2] = centers[class_label].b;
             }
         }
     }
-
     post_processing(&labimg);
     cvtColor(labimg,img,COLOR_Lab2BGR);
-    display_contours(&img);
+    /* draw contours */
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            int num = 0;
+            for (int ii = i - 1; ii <= i + 1 && num < 2; ii++) {
+                for (int jj = j - 1; jj <= j + 1 && num < 2; jj++) {
+                    if (ii < 0 || ii >= height || jj < 0 || jj >= width) continue;
+                    if (new_clusters[ii][jj] != new_clusters[i][j]) num++;
+                }
+            }
+            if(num >= 2){
+                img.at<Vec3b>(i,j)[0] = 255;
+                img.at<Vec3b>(i,j)[1] = 0;
+                img.at<Vec3b>(i,j)[2] = 0;
+            }
+        }
+    }
+    //display_contours(&img);
     namedWindow("img", WINDOW_NORMAL);
     imshow("img", img);
-
+    imwrite("lena_result.png",img);
     waitKey(0);
     return 0;
 }
@@ -252,50 +253,3 @@ void post_processing(Mat* image)
 
 }
 
-void display_contours(Mat *image) {
-    const int dx8[8] = {-1, -1,  0,  1, 1, 1, 0, -1};
-    const int dy8[8] = { 0, -1, -1, -1, 0, 1, 1,  1};
-
-    /* Initialize the contour vector and the matrix detailing whether a pixel
-     * is already taken to be a contour. */
-    vector<Point> contours;
-    vector<vector<bool>> istaken;
-    for (int i = 0; i < height; i++) {
-        vector<bool> nb;
-        for (int j = 0; j < width; j++) {
-            nb.push_back(false);
-        }
-        istaken.push_back(nb);
-    }
-
-    /* Go through all the pixels. */
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            int nr_p = 0;
-
-            /* Compare the pixel to its 8 neighbours. */
-            for (int k = 0; k < 8; k++) {
-                int x = j + dx8[k], y = i + dy8[k];
-
-                if (x >= 0 && x < width && y >= 0 && y < height) {
-                    if (istaken[y][x] == false && new_clusters[i][j] != new_clusters[y][x]) {
-                        nr_p += 1;
-                    }
-                }
-            }
-
-            /* Add the pixel to the contour list if desired. */
-            if (nr_p >= 2) {
-                contours.push_back(Point(j,i));
-                istaken[i][j] = true;
-            }
-        }
-    }
-
-    /* Draw the contour pixels. */
-    for (int i = 0; i < (int)contours.size(); i++) {
-        image->at<Vec3b>(contours[i].y,contours[i].x)[0] = 255;
-        image->at<Vec3b>(contours[i].y,contours[i].x)[1] = 0;
-        image->at<Vec3b>(contours[i].y,contours[i].x)[2] = 0;
-    }
-}
