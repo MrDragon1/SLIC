@@ -24,7 +24,7 @@ Mat labimg, img;
 int width, height;
 
 int main() {
-    img = imread("./lena.png");
+    img = imread("./dog.png");
     cvtColor(img,labimg,COLOR_BGR2Lab);
     namedWindow("origin img", WINDOW_NORMAL);
     imshow("origin img", img);
@@ -128,29 +128,12 @@ int main() {
             }
         }
     }
-    post_processing(&labimg);
+
     cvtColor(labimg,img,COLOR_Lab2BGR);
-    /* draw contours */
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            int num = 0;
-            for (int ii = i - 1; ii <= i + 1 && num < 2; ii++) {
-                for (int jj = j - 1; jj <= j + 1 && num < 2; jj++) {
-                    if (ii < 0 || ii >= height || jj < 0 || jj >= width) continue;
-                    if (new_clusters[ii][jj] != new_clusters[i][j]) num++;
-                }
-            }
-            if(num >= 2){
-                img.at<Vec3b>(i,j)[0] = 255;
-                img.at<Vec3b>(i,j)[1] = 0;
-                img.at<Vec3b>(i,j)[2] = 0;
-            }
-        }
-    }
-    //display_contours(&img);
+
     namedWindow("img", WINDOW_NORMAL);
     imshow("img", img);
-    imwrite("lena_result.png",img);
+    imwrite("dog_result.png",img);
     waitKey(0);
     return 0;
 }
@@ -186,70 +169,37 @@ double getdistance(center a,center b,double S)
     double ds = sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2));
     return sqrt(dc*dc + pow(ds/S,2) * 100);
 }
-
-void post_processing(Mat* image)
-{
-    int label_count = 0, adjlabel = 0;
-    const int lims = (width * height) / ((int)centers.size());
-
-    const int dx4[4] = {-1,  0,  1,  0};
-    const int dy4[4] = { 0, -1,  0,  1};
-
-    /* Initialize the new cluster matrix. */
-
-    for (int i = 0; i < height; i++) {
-        vector<int> nc;
-        for (int j = 0; j < width; j++) {
-            nc.push_back(-1);
-        }
-        new_clusters.push_back(nc);
-    }
-
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            if (new_clusters[i][j] == -1) {
-                vector<Point> elements;
-                elements.push_back(Point(j, i));
-
-                /* Find an adjacent label, for possible use later. */
-                for (int k = 0; k < 4; k++) {
-                    int x = elements[0].x + dx4[k], y = elements[0].y + dy4[k];
-
-                    if (x >= 0 && x < width && y >= 0 && y < height) {
-                        if (new_clusters[y][x] >= 0) {
-                            adjlabel = new_clusters[y][x];
-                        }
-                    }
-                }
-
-                int count = 1;
-                for (int c = 0; c < count; c++) {
-                    for (int k = 0; k < 4; k++) {
-                        int x = elements[c].x + dx4[k], y = elements[c].y + dy4[k];
-
-                        if (x >= 0 && x < width && y >= 0 && y < height) {
-                            if (new_clusters[y][x] == -1 && label[i][j] == label[y][x]) {
-                                elements.push_back(Point(x, y));
-                                new_clusters[y][x] = label_count;
-                                count += 1;
-                            }
-                        }
-                    }
-                }
-
-                /* Use the earlier found adjacent label if a segment size is
-                   smaller than a limit. */
-                if (count <= lims >> 2) {
-                    for (int c = 0; c < count; c++) {
-                        new_clusters[elements[c].y][elements[c].x] = adjlabel;
-                    }
-                    label_count -= 1;
-                }
-                label_count += 1;
-            }
-        }
-    }
+/*
+width: 515 height: 514
+iter:1 err:959.521
+iter:2 err:195.027
+iter:3 err:123.352
+iter:4 err:60.97
+iter:5 err:32.5432
+iter:6 err:17.612
+iter:7 err:7.74706
+iter:8 err:3.19168
+iter:9 err:3.62053
+iter:10 err:3.38873
+iter:11 err:1.5831
+iter:12 err:0
+the number of cluster center : 100
 
 
-}
-
+ width: 320 height: 240
+iter:1 err:698.76
+iter:2 err:208.309
+iter:3 err:86.2096
+iter:4 err:35.4387
+iter:5 err:20.426
+iter:6 err:11.1248
+iter:7 err:7.12644
+iter:8 err:4.6766
+iter:9 err:2.50347
+iter:10 err:4.42396
+iter:11 err:2.92452
+iter:12 err:0.360844
+iter:13 err:0.360844
+iter:14 err:0
+the number of cluster center : 88
+*/
